@@ -1,0 +1,14 @@
+# Project
+
+/app/tmp
+/lib
+/plugins
+/vendors
+/build
+/dist
+/tags
+
+
+# IDE
+.idea
+egresados.iml

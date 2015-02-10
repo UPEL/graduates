@@ -1,0 +1,26 @@
+		.black_overlay{
+			top: 0%;
+			left: 0%;
+			width: 100%;
+			height: 100%;
+			background-color: black;
+			-moz-opacity: 0.6;
+			opacity:.6;
+			filter: alpha(opacity=60);
+		
+			position: fixed;
+			z-index:1001;
+		}
+		.white_content {
+			top: 25%;
+			left: 25%;
+			width: 50%;
+			padding: 16px;
+			border: 6px solid black;
+			background-color: white;
+			overflow: auto;
+			border-radius: 6px 6px;
+		
+			position: fixed;
+			z-index:1002;
+		}

@@ -1,0 +1,86 @@
+# Very old system for take control of graduates in UPEL
+
+It is just for reference, is not supported.
+
+Is built with CakePHP 2.X
+
+# For local installation please check this steps:
+
+## 0) Enable mod_rewrite
+http://stackoverflow.com/questions/869092/how-to-enable-mod-rewrite-for-apache-2-2
+
+## 1) Clone the project
+
+## 2) Set a virtual host:
+
+`sudo subl /etc/hosts `
+
+ ```
+127.0.0.1	localhost
+127.0.1.1	romelgomez
+
+#127.0.0.1	www.jqtree-cakephp-example.com
+127.0.0.2 	www.graduates.net
+
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+```
+
+`sudo subl /etc/apache2/sites-available/hack.conf `
+
+```
+# http://stackoverflow.com/questions/10873295/error-message-forbidden-you-dont-have-permission-to-access-on-this-server
+
+ServerName 127.0.0.1:80
+
+# www.graduates.net
+<VirtualHost 127.0.0.2:80>
+ ServerName www.graduates.net
+ DocumentRoot "/home/romelgomez/workspace/projects/graduates/app/webroot"
+  DirectoryIndex index.php
+  <Directory />
+      Require all granted
+      Options Indexes FollowSymLinks Includes ExecCGI
+      AllowOverride All
+      Order deny,allow
+      Allow from all
+  </Directory>
+  <Directory "/home/romelgomez/workspace/projects/graduates/app/webroot">
+    Options FollowSymLinks
+    AllowOverride All
+    Allow from all
+  </Directory>
+</VirtualHost>
+```
+
+#### then activate the new config
+
+`a2ensite hack.conf`
+
+For deactivate `a2ensite hack.conf`
+
+Visit www.graduates.net, is very sure you will see many issues, for solve this problems check the other steps
+
+## 3) Set database
+
+The config database file is in /app/Config/database.php, and the scheme/data is in /database directory
+
+## 4) There are directories that are constantly rewritten, they are:
+
+To resolve this issues apply the following:
+
+`chmod 777 -R /graduates/app/tmp` *
+
+`chmod 777 -R /graduates/lib` *
+
+* This directories are not delivery with this repository, you must copy from new distribution of CakePHP 2.x.
+
+## NOTES: To create new admin or user, you need create manually, the current user in data base (romel2@gmail.com)* and has this password: 123123
+
+* This email no exists or are real.
+
